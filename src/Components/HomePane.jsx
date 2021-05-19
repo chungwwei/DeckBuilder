@@ -1,4 +1,4 @@
-import { Grid, Paper, AppBar, Toolbar, Button, IconButton, Typography } from '@material-ui/core'
+import { Grid, Paper, AppBar, Toolbar, Button, IconButton, Typography, setRef } from '@material-ui/core'
 import { React, useState, useEffect } from 'react'
 import { CardPane } from './CardPane'
 import { DeckInfoPane } from './DeckInfoPane'
@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import dataset1 from '../Data/set1-en_us.json'
 import { GameCard } from '../Plain/GameCard'
+import { Deck } from '../Plain/Deck'
 // import { HomeIcon } from '@material-ui/icons/Home'
 const images = require.context('../../public/images', true);
 const useStyles = makeStyles((theme) => ({
@@ -79,6 +80,16 @@ cards.sort((a, b) => {
 export const HomePane = (props) => {
     const classes = useStyles()
 
+    const [myDeck, setMyDeck] = useState({
+        regionCnt: [],
+        followerCnt: 0,
+        championCnt: 0,
+        spellCnt: 0,
+        landmarkCnt: 0,
+        cards: [],
+        cardCnt: {},
+    })
+    const [refresh, setRefresh] = useState(false)
     const [searchTextField, setSearchTextField] = useState('')
     const [cardKeywords, setCardKeywords] = useState([])
     const [myList, setMyList] = useState([])
@@ -117,7 +128,6 @@ export const HomePane = (props) => {
     const [filterEpic, setFilterEpic] = useState(false)
 
 
-    console.log(filterFreljord)
     useEffect(() => {
         let newList = []
         if (filterBilgewater) { newList = newList.concat(cards.filter(c => c.region.toLowerCase() === 'bilgewater')) }
@@ -154,6 +164,7 @@ export const HomePane = (props) => {
         }
     }, [searchTextField])
 
+    console.log(`myDeck: ${myDeck}`)
     console.log(`myList: ${myList}`)
     return (
         <div>
@@ -178,13 +189,21 @@ export const HomePane = (props) => {
                         <Paper>
                             <CardPane 
                                 cards={displayCards}
+                                myDeck={myDeck}
                                 setMyList={setMyList}
+                                setMyDeck={setMyDeck}
+                                setRefresh={setRefresh}
                             ></CardPane>
                         </Paper>
                     </Grid>
                     <Grid item sm={3} className={classes.rightPane}>
                         <Paper>
-                            <DeckInfoPane myList={myList}></DeckInfoPane>
+                            <DeckInfoPane 
+                                myList={myList}
+                                myDeck={myDeck}
+                                setMyDeck={setMyDeck}
+                                setRefresh={setRefresh}
+                            />
                         </Paper>
                     </Grid>
                 </Grid>
