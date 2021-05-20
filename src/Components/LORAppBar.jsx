@@ -22,6 +22,12 @@ import { Grid, Avatar, AvatarGroup, Button, SwipeableDrawer, Divider, FormContro
 const images = require.context('../../public/images/regions', true);
 const setImages = require.context('../../public/images/sets', true);
 const useStyles = makeStyles((theme) => ({
+  manaOn: {
+    background: '#333333'
+  },
+  manaOff: {
+    background: '#539ae0'
+  },
   grow: {
     flexGrow: 1,
   },
@@ -101,9 +107,9 @@ function getStyles(name, personName, theme) {
 
 export const LORAppBar = (props) => {
   const classes = useStyles();
-  const { 
-    setSearchTextField, 
-    setCardKeywords ,
+  const {
+    setSearchTextField,
+    setCardKeywords,
     setFilterBilgewater,
     setFilterDemacia,
     setFilterFreljord,
@@ -112,7 +118,21 @@ export const LORAppBar = (props) => {
     setFilterPiltoverZaun,
     setFilterShadowIsles,
     setFilterShurima,
-    setFilterTargon
+    setFilterTargon,
+    setFilterSetOne,
+    setFilterSetTwo,
+    setFilterSetThree,
+    setFilterSetFour,
+    setFilterManaOne,
+    setFilterManaTwo,
+    setFilterManaThree,
+    setFilterManaFour,
+    setFilterManaFive,
+    setFilterManaSix,
+    setFilterManaSeven,
+    setFilterCommon,
+    setFilterRare,
+    setFilterEpic
   } = props
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -167,11 +187,14 @@ export const LORAppBar = (props) => {
   }
 
   const names = ['attune', 'capture', 'burst', 'barrier', 'fast']
-  const regions = ['demacia', 'bilgewater', 'ionia', 'all', 'freljord', 'piltoverzaun', 'shadowisles', 'shurima', 'noxus', 'targon']
-  const rarity = ['champion', 'epic', 'rare', 'common']
+  const regions = ['demacia', 'bilgewater', 'ionia', 'freljord', 'piltoverzaun', 'shadowisles', 'shurima', 'noxus', 'targon']
+  const rarity = ['Champion', 'epic', 'rare', 'common']
   const cardSets = ['set1', 'set2', 'set3', 'set4']
+  const types = ['Champion', 'Cpell', 'Collower', 'Landmark']
+  const manacosts = [1, 2, , 3, 4, , 5, 6, 7]
 
   const regionsOnClickFunctions = (region) => {
+    region = region.toLowerCase()
     if (region === 'bilgewater') return setFilterBilgewater
     if (region === 'demacia') return setFilterDemacia
     if (region === 'ionia') return setFilterIonia
@@ -181,6 +204,29 @@ export const LORAppBar = (props) => {
     if (region === 'shurima') return setFilterShurima
     if (region === 'noxus') return setFilterNoxus
     if (region === 'targon') return setFilterTargon
+  }
+
+  const setsOnClickFunctions = (s) => {
+    if (s === 'set1') return setFilterSetOne
+    if (s === 'set2') return setFilterSetTwo
+    if (s === 'set3') return setFilterSetThree
+    if (s === 'set4') return setFilterSetFour
+  }
+
+  const manaOnClickFunctions = (m) => {
+    if (m === 1) return setFilterManaOne
+    if (m === 2) return setFilterManaTwo
+    if (m === 3) return setFilterManaThree
+    if (m === 4) return setFilterManaFour
+    if (m === 5) return setFilterManaFive
+    if (m === 6) return setFilterManaSix
+    if (m === 7) return setFilterManaSeven
+  }
+
+  const rarityClickFunctions = (r) => {
+    if (r === 'common') return setFilterCommon
+    if (r === 'rare') return setFilterRare
+    if (r === 'epic') return setFilterEpic
   }
 
   const renderDrawer = (
@@ -194,11 +240,10 @@ export const LORAppBar = (props) => {
       <Grid container>
         {regions.map((region, idx) => {
           let imgsrc = images(`./icon-${region}.png`);
-          let func   = regionsOnClickFunctions(region);
-          console.log(typeof(func))
+          let func = regionsOnClickFunctions(region);
           return (
             <Grid item>
-              <IconButton onClick={()=>func(old => !old)}>
+              <IconButton onClick={() => func(old => !old)}>
                 <Avatar src={imgsrc.default} />
               </IconButton>
             </Grid>
@@ -210,9 +255,10 @@ export const LORAppBar = (props) => {
       <Grid container justify='center'>
         {cardSets.map((s, idx) => {
           let imgsrc = setImages(`./${s}.png`);
+          let func = setsOnClickFunctions(s);
           return (
             <Grid item>
-              <IconButton>
+              <IconButton onClick={() => func(old => !old)}>
                 <Avatar src={imgsrc.default} />
               </IconButton>
             </Grid>
@@ -221,7 +267,46 @@ export const LORAppBar = (props) => {
         )}
       </Grid>
       <Divider></Divider>
-      <Button> hello </Button>
+      <Grid container justify='center'>
+        {rarity.map((s, idx) => {
+          let func = rarityClickFunctions(s);
+          return (
+            <Grid item>
+              <IconButton onClick={() => func(old => !old)}>
+                <Button> {s} </Button>
+              </IconButton>
+            </Grid>
+          )
+        }
+        )}
+      </Grid>
+      <Divider></Divider>
+      <Grid container justify='center'>
+        {types.map((s, idx) => {
+          return (
+            <Grid item>
+              <IconButton onClick={() => { }}>
+                <Button> {s} </Button>
+              </IconButton>
+            </Grid>
+          )
+        }
+        )}
+      </Grid>
+      <Divider></Divider>
+      <Grid container justify='center'>
+        {manacosts.map((s, idx) => {
+          let func = manaOnClickFunctions(s);
+          return (
+            <Grid item>
+              <IconButton onClick={() => func(old => !old)}>
+                <Button className={classes.manaOff}> {s} </Button>
+              </IconButton>
+            </Grid>
+          )
+        }
+        )}
+      </Grid>
       <Divider></Divider>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-mutiple-name-label">KEYWORDS</InputLabel>

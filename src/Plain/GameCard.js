@@ -59,4 +59,37 @@ export class GameCard {
         this.collectible = collectible;
         this.set = set;
     }
+
+    clone() {
+        new GameCard(
+            this.associatedCards,
+            this.associatedCardRef,
+            this.assets,
+            this.region,
+            this.regionRef,
+            this.attack,
+            this.cost,
+            this.health,
+            this.description,
+            this.descriptionRaw,
+            this.levelupDescription,
+            this.levelupDescriptionRaw,
+            this.flavorText,
+            this.artistName,
+            this.name,
+            this.cardCode,
+            this.keywords,
+            this.keywordRefs,
+            this.spellSpeed,
+            this.spellSpeedRef,
+            this.rarity,
+            this.rarityRef,
+            this.subtype,
+            this.subtypes,
+            this.supertype,
+            this.type,
+            this.collectible,
+            this.set
+        )
+    }
 }

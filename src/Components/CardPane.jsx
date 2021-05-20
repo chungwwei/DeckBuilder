@@ -30,6 +30,7 @@ export const CardPane = (props) => {
         myDeck,
         setMyList,
         setMyDeck,
+        setDisplayCards,
         setRefresh
     } = props
 
@@ -69,7 +70,6 @@ export const CardPane = (props) => {
         setMyList(prev => [...prev, card])
     }
 
-    console.log(`cardpane: ${cards}`)
     const Row = ({ columnIndex, rowIndex, style }) => {
         let imgsrc = images(`./${cards[rowIndex * 3 + columnIndex].cardCode}.png`);
         return (

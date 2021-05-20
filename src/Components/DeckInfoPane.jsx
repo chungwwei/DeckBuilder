@@ -18,7 +18,6 @@ export const DeckInfoPane = (props) => {
          })
      }
      
-     console.log(`cards to display: ${displayCards}`)
      const spellCnt = myDeck.spellCnt
      const championCnt = myDeck.championCnt
      const landmarkCnt = myDeck.landmarkCnt

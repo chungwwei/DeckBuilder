@@ -128,44 +128,125 @@ export const HomePane = (props) => {
     const [filterEpic, setFilterEpic] = useState(false)
 
 
-    useEffect(() => {
-        let newList = []
-        if (filterBilgewater) { newList = newList.concat(cards.filter(c => c.region.toLowerCase() === 'bilgewater')) }
-        if (filterDemacia) { newList = newList.concat(cards.filter(c => c.regionRef.toLowerCase() === 'demacia')) }
-        if (filterFreljord) { newList = newList.concat(cards.filter(c => c.regionRef.toLowerCase() === 'freljord')) }
-        if (filterIonia) { newList = newList.concat(cards.filter(c => c.regionRef.toLowerCase() === 'ionia')) }
-        if (filterTargon) { newList = newList.concat(cards.filter(c => c.regionRef.toLowerCase() === 'targon')) }
-        if (filterNoxus) { newList = newList.concat(cards.filter(c => c.regionRef.toLowerCase() === 'noxus')) }
-        if (filterPiltoverZaun) { newList = newList.concat(cards.filter(c => c.regionRef.toLowerCase() === 'piloverzaun')) }
-        if (filterShurima) { newList = newList.concat(cards.filter(c => c.regionRef.toLowerCase() === 'shurima')) }
-        if (filterShadowIsles) { newList = newList.concat(cards.filter(c => c.regionRef.toLowerCase() === 'shadowisles')) }
 
-        newList.sort((a, b) => {
+    // for (let i = 0; i < displayCards.length; i ++) {
+    //     original.push(displayCards[i].clone())
+    // }
+    var original = [...cards]
+    // useEffect(() => {
+    //     original = [...displayCards]
+    // }, [])
+
+    useEffect(() => {
+        var championFilters = []
+        if (filterBilgewater) { championFilters.push((c) => c.regionRef.toLowerCase() === 'bilgewater') }
+        if (filterDemacia) { championFilters.push((c) => c.regionRef.toLowerCase() === 'demacia') }
+        if (filterFreljord) { championFilters.push((c) => c.regionRef.toLowerCase() === 'freljord') }
+        if (filterIonia) { championFilters.push((c) => c.regionRef.toLowerCase() === 'ionia') }
+        if (filterTargon) { championFilters.push((c) => c.regionRef.toLowerCase() === 'targon') }
+        if (filterNoxus) { championFilters.push((c) => c.regionRef.toLowerCase() === 'noxus') }
+        if (filterPiltoverZaun) { championFilters.push((c) => c.regionRef.toLowerCase() === 'piloverzaun') }
+        if (filterShurima) { championFilters.push((c) => c.regionRef.toLowerCase() === 'shurima') }
+        if (filterShadowIsles) { championFilters.push((c) => c.regionRef.toLowerCase() === 'shadowisles') }
+
+        if (championFilters.length > 0) {
+            original = original.filter((c) => {
+                for (const f of championFilters) {
+                    if (f(c)) return true
+                }
+                return false
+            })
+        }
+
+        var setFilters = []
+        if (filterSetOne) { setFilters.push((c) => c.set === 'Set1') }
+        if (filterSetTwo) { setFilters.push((c) => c.set === 'Set2') }
+        if (filterSetThree) { setFilters.push((c) => c.set === 'Set3') }
+        if (filterSetFour) { setFilters.push((c) => c.set === 'Set4') }
+
+        if (setFilters.length > 0) {
+            console.log("doing filtering")
+            console.log(setFilters)
+            original = original.filter((c) => {
+                for (const f of setFilters) {
+                    if (f(c)) return true
+                }
+                return false
+            })
+        }
+
+        var manaFilters = []
+        if (filterManaOne) { manaFilters.push((c) => c.cost === 1) }
+        if (filterManaTwo) { manaFilters.push((c) => c.cost === 2) }
+        if (filterManaThree) { manaFilters.push((c) => c.cost === 3) }
+        if (filterManaFour) { manaFilters.push((c) => c.cost === 4) }
+        if (filterManaFive) { manaFilters.push((c) => c.cost === 5) }
+        if (filterManaSix) { manaFilters.push((c) => c.cost === 6) }
+        if (filterManaSeven) { manaFilters.push((c) => c.cost === 7) }
+
+        if (manaFilters.length > 0) {
+            original = original.filter((c) => {
+                for (const f of manaFilters) {
+                    if (f(c)) return true
+                }
+                return false
+            })
+        }
+
+        var rarityFilters = []
+        if (filterCommon) { rarityFilters.push((c) => c.rarity === 'COMMON')}
+        if (filterEpic) { rarityFilters.push((c) => c.rarity === 'EPIC')}
+        if (filterRare) { rarityFilters.push((c) => c.rarity === 'RARE')}
+
+        if (rarityFilters.length > 0) {
+            original = original.filter((c) => {
+                for (const f of rarityFilters) {
+                    if (f(c)) return true
+                }
+                return false
+            })
+        }
+
+        original = original.sort((a, b) => {
             if (a.cost === b.cost) {
                 return a.name.localeCompare(b.name)
             }
             return a.cost - b.cost
         })
-        setDisplayCards(newList)
-    }, [filterBilgewater, filterDemacia, filterFreljord])
+
+        setDisplayCards(original)
+
+    }, [filterBilgewater, filterDemacia, filterFreljord, filterIonia, filterPiltoverZaun, filterNoxus, filterShadowIsles, filterShurima, filterTargon, 
+        filterSetOne, filterSetTwo, filterSetThree, filterSetFour, 
+        filterManaOne, filterManaTwo, filterManaThree, filterManaFour, filterManaFive, filterManaSix, filterManaSeven,
+        filterChampion, filterSpell, filterLandmark, filterFollower,
+        filterCommon, filterRare, filterEpic])
+
+    // // for sets
+    // useEffect(() => {
+
+    //     setDisplayCards(original)
+
+
+    // }, [])
 
     useEffect(() => {
+
         if (searchTextField === '') {
-            setDisplayCards(cards)
+            setDisplayCards(original)
         } else {
-            const newList = cards.filter(c => c.name.toLowerCase() === searchTextField.toLowerCase())
-            newList.sort((a, b) => {
+            original = original.filter(c => c.name.toLowerCase() === searchTextField.toLowerCase())
+            original.sort((a, b) => {
                 if (a.cost === b.cost) {
                     return a.name.localeCompare(b.name)
                 }
                 return a.cost - b.cost
             })
-            setDisplayCards(newList)
+            setDisplayCards(original)
         }
     }, [searchTextField])
 
-    console.log(`myDeck: ${myDeck}`)
-    console.log(`myList: ${myList}`)
+    console.log('rendering')
     return (
         <div>
             <div className={classes.root}>
@@ -181,15 +262,30 @@ export const HomePane = (props) => {
                     setFilterShadowIsles={setFilterShadowIsles}
                     setFilterShurima={setFilterShurima}
                     setFilterTargon={setFilterTargon}
+                    setFilterSetOne={setFilterSetOne}
+                    setFilterSetTwo={setFilterSetTwo}
+                    setFilterSetThree={setFilterSetThree}
+                    setFilterSetFour={setFilterSetFour}
+                    setFilterManaOne={setFilterManaOne}
+                    setFilterManaTwo={setFilterManaTwo}
+                    setFilterManaThree={setFilterManaThree}
+                    setFilterManaFour={setFilterManaFour}
+                    setFilterManaFive={setFilterManaFive}
+                    setFilterManaSix={setFilterManaSix}
+                    setFilterManaSeven={setFilterManaSeven}
+                    setFilterCommon={setFilterCommon}
+                    setFilterRare={setFilterRare}
+                    setFilterEpic={setFilterEpic}
                 />
             </div>
             <div>
                 <Grid container>
                     <Grid item sm={9} className={classes.leftPane}>
                         <Paper>
-                            <CardPane 
+                            <CardPane
                                 cards={displayCards}
                                 myDeck={myDeck}
+                                setDisplayCards={setDisplayCards}
                                 setMyList={setMyList}
                                 setMyDeck={setMyDeck}
                                 setRefresh={setRefresh}
@@ -198,7 +294,7 @@ export const HomePane = (props) => {
                     </Grid>
                     <Grid item sm={3} className={classes.rightPane}>
                         <Paper>
-                            <DeckInfoPane 
+                            <DeckInfoPane
                                 myList={myList}
                                 myDeck={myDeck}
                                 setMyDeck={setMyDeck}
@@ -209,6 +305,5 @@ export const HomePane = (props) => {
                 </Grid>
             </div>
         </div>
-
     )
 }
