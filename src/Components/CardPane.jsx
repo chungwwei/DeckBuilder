@@ -57,6 +57,7 @@ export const CardPane = (props) => {
 
         deckClone.cardCnt[card.name] += 1
         deckClone.cards.push({ ...card })
+        deckClone.deckSize += 1
 
         if (deckClone.regionCnt.length === 0) {
             deckClone.regionCnt.push(card.region)

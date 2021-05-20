@@ -32,7 +32,7 @@ const set1 = 'set1'
 const set2 = 'set2'
 const set3 = 'set3'
 const set4 = 'set4'
-const cards = []
+var cards = []
 
 for (const i in dataset1) {
     const c = dataset1[i]
@@ -69,6 +69,20 @@ for (const i in dataset1) {
     cards.push(n)
 }
 
+cards = cards.filter((c) => {
+    if (c.supertype === 'Champion' && c.rarity === 'None')
+        return false
+    for (let i = 0; i < c.keywords.length; i ++) {
+        if (c.keywords[i] === 'Skill')
+            return false
+    }
+    return true
+})
+
+const nameToCard = {}
+for (let i = 0; i < cards.length; i ++) {
+    nameToCard[cards[i].name] = cards[i]
+}
 
 cards.sort((a, b) => {
     if (a.cost === b.cost) {
@@ -88,6 +102,7 @@ export const HomePane = (props) => {
         landmarkCnt: 0,
         cards: [],
         cardCnt: {},
+        deckSize: 0
     })
     const [refresh, setRefresh] = useState(false)
     const [searchTextField, setSearchTextField] = useState('')
@@ -297,6 +312,7 @@ export const HomePane = (props) => {
                             <DeckInfoPane
                                 myList={myList}
                                 myDeck={myDeck}
+                                nameToCard={nameToCard}
                                 setMyDeck={setMyDeck}
                                 setRefresh={setRefresh}
                             />
