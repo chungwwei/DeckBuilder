@@ -82,7 +82,6 @@ export const CardPane = (props) => {
                     ></img>
                 </Paper>
             </div>
-
         )
     }
 

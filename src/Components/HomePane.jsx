@@ -142,16 +142,7 @@ export const HomePane = (props) => {
     const [filterRare, setFilterRare] = useState(false)
     const [filterEpic, setFilterEpic] = useState(false)
 
-
-
-    // for (let i = 0; i < displayCards.length; i ++) {
-    //     original.push(displayCards[i].clone())
-    // }
     var original = [...cards]
-    // useEffect(() => {
-    //     original = [...displayCards]
-    // }, [])
-
     useEffect(() => {
         var championFilters = []
         if (filterBilgewater) { championFilters.push((c) => c.regionRef.toLowerCase() === 'bilgewater') }
@@ -229,38 +220,79 @@ export const HomePane = (props) => {
             return a.cost - b.cost
         })
 
+        if (searchTextField !== '') {
+            original = original.filter(c => c.name.toLowerCase() === searchTextField.toLowerCase())
+        }
+
+        // padding
+        if (original.length / 3 !== 0) {
+            let r = 3 - (original.length % 3)
+            while (r > 0) {
+                original.push(new GameCard(
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    '01DE002',
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+    
+                ))
+                r -= 1
+            }
+        }
+
         setDisplayCards(original)
 
     }, [filterBilgewater, filterDemacia, filterFreljord, filterIonia, filterPiltoverZaun, filterNoxus, filterShadowIsles, filterShurima, filterTargon, 
         filterSetOne, filterSetTwo, filterSetThree, filterSetFour, 
         filterManaOne, filterManaTwo, filterManaThree, filterManaFour, filterManaFive, filterManaSix, filterManaSeven,
         filterChampion, filterSpell, filterLandmark, filterFollower,
-        filterCommon, filterRare, filterEpic])
+        filterCommon, filterRare, filterEpic,
+        searchTextField
+    ])
 
-    // // for sets
     // useEffect(() => {
 
-    //     setDisplayCards(original)
+    //     if (searchTextField === '') {
+    //         setDisplayCards(original)
+    //     } else {
+
+    //         original.sort((a, b) => {
+    //             if (a.cost === b.cost) {
+    //                 return a.name.localeCompare(b.name)
+    //             }
+    //             return a.cost - b.cost
+    //         })
+    //         setDisplayCards(original)
+    //     }
+    // }, [searchTextField])
+
+    // padding to cardpane if total cards isn't divisible by 3
 
 
-    // }, [])
-
-    useEffect(() => {
-
-        if (searchTextField === '') {
-            setDisplayCards(original)
-        } else {
-            original = original.filter(c => c.name.toLowerCase() === searchTextField.toLowerCase())
-            original.sort((a, b) => {
-                if (a.cost === b.cost) {
-                    return a.name.localeCompare(b.name)
-                }
-                return a.cost - b.cost
-            })
-            setDisplayCards(original)
-        }
-    }, [searchTextField])
-
+    console.log(`displayCards: ${displayCards}`)
     console.log('rendering')
     return (
         <div>
