@@ -142,6 +142,7 @@ export const HomePane = (props) => {
     const [filterRare, setFilterRare] = useState(false)
     const [filterEpic, setFilterEpic] = useState(false)
 
+
     var original = [...cards]
     useEffect(() => {
         var championFilters = []
@@ -203,11 +204,41 @@ export const HomePane = (props) => {
         if (filterCommon) { rarityFilters.push((c) => c.rarity === 'COMMON')}
         if (filterEpic) { rarityFilters.push((c) => c.rarity === 'EPIC')}
         if (filterRare) { rarityFilters.push((c) => c.rarity === 'RARE')}
+        if (filterChampion) { rarityFilters.push((c) => c.rarity === 'Champion') }
 
         if (rarityFilters.length > 0) {
             original = original.filter((c) => {
                 for (const f of rarityFilters) {
                     if (f(c)) return true
+                }
+                return false
+            })
+        }
+
+
+        var typeFilters = []
+        if (filterSpell) { typeFilters.push((c) => c.type === 'Spell')}
+        if (filterFollower) { typeFilters.push((c) => c.type === 'Unit' && c.supertype !== 'Champion')}
+        if (filterLandmark) { typeFilters.push((c) => c.type === 'Landmark')}
+
+        if (typeFilters.length > 0) {
+            original = original.filter((c) => {
+                for (const f of typeFilters) {
+                    if (f(c)) return true
+                }
+                return false
+            })
+        }
+
+        // filtering by keywords
+        // filterKeywords
+        console.log(`filtering keywords are: ${cardKeywords}`)
+        if (cardKeywords.length > 0) {
+            original = original.filter((c) => {
+                for (const k of c.keywords) {
+                    for (const target of cardKeywords) {
+                        if (k === target) return true
+                    }
                 }
                 return false
             })
@@ -270,29 +301,10 @@ export const HomePane = (props) => {
         filterManaOne, filterManaTwo, filterManaThree, filterManaFour, filterManaFive, filterManaSix, filterManaSeven,
         filterChampion, filterSpell, filterLandmark, filterFollower,
         filterCommon, filterRare, filterEpic,
-        searchTextField
+        searchTextField,
+        cardKeywords
     ])
 
-    // useEffect(() => {
-
-    //     if (searchTextField === '') {
-    //         setDisplayCards(original)
-    //     } else {
-
-    //         original.sort((a, b) => {
-    //             if (a.cost === b.cost) {
-    //                 return a.name.localeCompare(b.name)
-    //             }
-    //             return a.cost - b.cost
-    //         })
-    //         setDisplayCards(original)
-    //     }
-    // }, [searchTextField])
-
-    // padding to cardpane if total cards isn't divisible by 3
-
-
-    console.log(`displayCards: ${displayCards}`)
     console.log('rendering')
     return (
         <div>
@@ -323,6 +335,35 @@ export const HomePane = (props) => {
                     setFilterCommon={setFilterCommon}
                     setFilterRare={setFilterRare}
                     setFilterEpic={setFilterEpic}
+                    setFilterSpell={setFilterSpell}
+                    setFilterFollower={setFilterFollower}
+                    setFilterLandmark={setFilterLandmark}
+                    setFilterChampion={setFilterChampion}
+                    filterBilgewater={filterBilgewater}
+                    filterDemacia={filterDemacia}
+                    filterFreljord={filterFreljord}
+                    filterIonia={filterIonia}
+                    filterNoxus={filterNoxus}
+                    filterShurima={filterShurima}
+                    filterPiltoverZaun={filterPiltoverZaun}
+                    filterShadowIsles={filterShadowIsles}
+                    filterTargon={filterTargon}
+                    filterManaOne={filterManaOne}
+                    filterManaTwo={filterManaTwo}
+                    filterManaThree={filterManaThree}
+                    filterManaFour={filterManaFour}
+                    filterManaFive={filterManaFive}
+                    filterManaSix={filterManaSix}
+                    filterCommon={filterCommon}
+                    filterRare={filterRare}
+                    filterEpic={filterEpic}
+                    filterSpell={filterSpell}
+                    filterFollower={filterFollower}
+                    filterLandmark={filterLandmark}
+                    filterSetOne={filterSetOne}
+                    filterSetTwo={filterSetTwo}
+                    filterSetThree={filterSetThree}
+                    filterSetFour={filterSetFour}
                 />
             </div>
             <div>

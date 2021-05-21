@@ -17,16 +17,17 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import HomeIcon from '@material-ui/icons/Home'
 import FilterIcon from '@material-ui/icons/FilterList'
 import { Grid, Avatar, AvatarGroup, Button, SwipeableDrawer, Divider, FormControl, Input, Select, InputLabel } from '@material-ui/core';
+import { Brightness1 } from '@material-ui/icons';
 
 
 const images = require.context('../../public/images/regions', true);
 const setImages = require.context('../../public/images/sets', true);
 const useStyles = makeStyles((theme) => ({
   manaOn: {
-    background: '#333333'
+    background: '#539ae0'
   },
   manaOff: {
-    background: '#539ae0'
+    background: '#ffffff'
   },
   grow: {
     flexGrow: 1,
@@ -132,7 +133,43 @@ export const LORAppBar = (props) => {
     setFilterManaSeven,
     setFilterCommon,
     setFilterRare,
-    setFilterEpic
+    setFilterEpic,
+
+    setFilterSpell,
+    setFilterFollower,
+    setFilterLandmark,
+    setFilterChampion,
+
+    filterBilgewater,
+    filterDemacia,
+    filterFreljord,
+    filterIonia,
+    filterNoxus,
+    filterPiltoverZaun,
+    filterShadowIsles,
+    filterShurima,
+    filterTargon,
+
+    filterManaOne,
+    filterManaTwo,
+    filterManaThree,
+    filterManaFour,
+    filterManaFive,
+    filterManaSix,
+    filterManaSeven,
+
+    filterCommon,
+    filterEpic,
+    filterRare,
+
+    filterSpell,
+    filterFollower,
+    filterLandmark,
+
+    filterSetOne,
+    filterSetTwo,
+    filterSetThree,
+    filterSetFour
   } = props
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -166,7 +203,8 @@ export const LORAppBar = (props) => {
     setToggleDrawer(open)
   }
 
-  const handleChange = (event) => {
+  const handleKeywordChange = (event) => {
+    setCardKeywords(event.target.value)
     setKeywordsList(event.target.value)
   }
 
@@ -186,12 +224,62 @@ export const LORAppBar = (props) => {
     setSearchTextField(text)
   }
 
-  const names = ['attune', 'capture', 'burst', 'barrier', 'fast']
+  const getFilterIconStyle = (region) => {
+    region = region.toLowerCase()
+    if (region === 'bilgewater' && filterBilgewater) return classes.manaOn
+    if (region === 'demacia' && filterDemacia) return classes.manaOn
+    if (region === 'ionia' && filterIonia) return classes.manaOn
+    if (region === 'freljord' && filterFreljord) return classes.manaOn
+    if (region === 'piltoverzaun' && filterPiltoverZaun) return classes.manaOn
+    if (region === 'shadowisles' && filterShadowIsles) return classes.manaOn
+    if (region === 'shurima' && filterShurima) return classes.manaOn
+    if (region === 'noxus' && filterNoxus) return classes.manaOn
+    if (region === 'targon' && filterTargon) return classes.manaOn
+    if (region === 'set1' && filterSetOne) return classes.manaOn
+    if (region === 'set2' && filterSetTwo) return classes.manaOn
+    if (region === 'set3' && filterSetThree) return classes.manaOn
+    if (region === 'set4' && filterSetFour) return classes.manaOn
+    return classes.manaOff
+  }
+
+  const getFilterManaButtonStyle = (mana) => {
+    if (mana === 1 && filterManaOne) return classes.manaOn
+    if (mana === 2 && filterManaTwo) return classes.manaOn
+    if (mana === 3 && filterManaThree) return classes.manaOn
+    if (mana === 4 && filterManaFour) return classes.manaOn
+    if (mana === 5 && filterManaFive) return classes.manaOn
+    if (mana === 6 && filterManaSix) return classes.manaOn
+    if (mana === 7 && filterManaSeven) return classes.manaOn
+    return classes.manaOff
+  }
+
+  const getFilterRarityButtonStyle = (r) => {
+    if (r === 'common' && filterCommon) return classes.manaOn
+    if (r === 'rare' && filterRare) return classes.manaOn
+    if (r === 'epic' && filterEpic) return classes.manaOn
+    if (r === 'champion' && setFilterChampion) return classes.manaOn
+    return classes.manaOff
+  }
+
+  const getFilterTypesButtonStyle = (t) => {
+    if (t === 'spell' && filterSpell) return classes.manaOn
+    if (t === 'follower' && filterFollower) return classes.manaOn
+    if (t === 'landmark' && filterLandmark) return classes.manaOn
+    return classes.manaOff
+  }
+
+  const names = ['Attune', 'Capture', 'Burst', 'Barrier', 'Fast', 'Overwhelm']
   const regions = ['demacia', 'bilgewater', 'ionia', 'freljord', 'piltoverzaun', 'shadowisles', 'shurima', 'noxus', 'targon']
-  const rarity = ['Champion', 'epic', 'rare', 'common']
+  const rarity = ['champion', 'epic', 'rare', 'common']
   const cardSets = ['set1', 'set2', 'set3', 'set4']
-  const types = ['Champion', 'Cpell', 'Collower', 'Landmark']
+  const types = ['spell', 'follower', 'landmark']
   const manacosts = [1, 2, , 3, 4, , 5, 6, 7]
+
+  const typeOnClickFunctions = (type) => {
+    if (type === 'spell') return setFilterSpell
+    if (type === 'follower') return setFilterFollower
+    if (type === 'landmark') return setFilterLandmark
+  }
 
   const regionsOnClickFunctions = (region) => {
     region = region.toLowerCase()
@@ -227,6 +315,7 @@ export const LORAppBar = (props) => {
     if (r === 'common') return setFilterCommon
     if (r === 'rare') return setFilterRare
     if (r === 'epic') return setFilterEpic
+    if (r === 'champion') return setFilterChampion
   }
 
   const renderDrawer = (
@@ -243,7 +332,7 @@ export const LORAppBar = (props) => {
           let func = regionsOnClickFunctions(region);
           return (
             <Grid item>
-              <IconButton onClick={() => func(old => !old)}>
+              <IconButton className={getFilterIconStyle(region)} onClick={() => func(old => !old)}>
                 <Avatar src={imgsrc.default} />
               </IconButton>
             </Grid>
@@ -258,7 +347,7 @@ export const LORAppBar = (props) => {
           let func = setsOnClickFunctions(s);
           return (
             <Grid item>
-              <IconButton onClick={() => func(old => !old)}>
+              <IconButton className={getFilterIconStyle(s)} onClick={() => func(old => !old)}>
                 <Avatar src={imgsrc.default} />
               </IconButton>
             </Grid>
@@ -272,9 +361,7 @@ export const LORAppBar = (props) => {
           let func = rarityClickFunctions(s);
           return (
             <Grid item>
-              <IconButton onClick={() => func(old => !old)}>
-                <Button> {s} </Button>
-              </IconButton>
+              <Button className={getFilterRarityButtonStyle(s)} onClick={() => func(old => !old)}> {s} </Button>
             </Grid>
           )
         }
@@ -283,11 +370,10 @@ export const LORAppBar = (props) => {
       <Divider></Divider>
       <Grid container justify='center'>
         {types.map((s, idx) => {
+          let func = typeOnClickFunctions(s);
           return (
             <Grid item>
-              <IconButton onClick={() => { }}>
-                <Button> {s} </Button>
-              </IconButton>
+              <Button className={getFilterTypesButtonStyle(s)} onClick={() => {func(old => !old) }}> {s} </Button>
             </Grid>
           )
         }
@@ -300,7 +386,7 @@ export const LORAppBar = (props) => {
           return (
             <Grid item>
               <IconButton onClick={() => func(old => !old)}>
-                <Button className={classes.manaOff}> {s} </Button>
+                <Button className={getFilterManaButtonStyle(s)}> {s} </Button>
               </IconButton>
             </Grid>
           )
@@ -315,15 +401,17 @@ export const LORAppBar = (props) => {
           id="demo-mutiple-name"
           multiple
           value={keywordsList}
-          onChange={handleChange}
+          onChange={handleKeywordChange}
           input={<Input />}
         // MenuProps={MenuProps}
         >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
-          ))}
+          {
+            names.map((name) => (
+              <MenuItem key={name} value={name}>
+                {name}
+              </MenuItem>
+            ))
+          }
         </Select>
       </FormControl>
     </SwipeableDrawer>
