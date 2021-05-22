@@ -109,7 +109,7 @@ export const CardPane = (props) => {
         </Grid> */
         <FixedSizeGrid
             width={1000}
-            height={640}
+            height={680}
             columnCount={3}
             columnWidth={300}
             rowCount={cards.length / 3}

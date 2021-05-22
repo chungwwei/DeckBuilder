@@ -1,31 +1,38 @@
 import { Button, Grid, Paper, TextField } from '@material-ui/core'
+import { ContactlessOutlined } from '@material-ui/icons';
 import { React } from 'react'
+import { FixedSizeList } from 'react-window';
 
+const images = require.context('../../public/images', true);
 export const DeckInfoPane = (props) => {
 
-    const { 
+    const {
         myList,
         myDeck,
         setRefresh,
         setMyDeck,
         nameToCard
-     } = props
+    } = props
 
-     const displayCards = []
-     for (const c in myDeck.cardCnt) {
-         displayCards.push({
-            name: c,
-            cnt: myDeck.cardCnt[c]
-         })
-     }
-     
-     const spellCnt = myDeck.spellCnt
-     const championCnt = myDeck.championCnt
-     const landmarkCnt = myDeck.landmarkCnt
-     const followerCnt = myDeck.followerCnt
-     const deckSize = myDeck.deckSize
+    const displayCards = []
+    for (const c in myDeck.cardCnt) {
+        if (myDeck.cardCnt[c] > 0) {
+            displayCards.push({
+                name: c,
+                cnt: myDeck.cardCnt[c],
+                cardCode: nameToCard[c].cardCode,
+                region: nameToCard[c].region
+            })
+        }
+    }
 
-     const handleCardClick = (c) => {
+    const spellCnt = myDeck.spellCnt
+    const championCnt = myDeck.championCnt
+    const landmarkCnt = myDeck.landmarkCnt
+    const followerCnt = myDeck.followerCnt
+    const deckSize = myDeck.deckSize
+
+    const handleCardClick = (c) => {
         console.log(c)
         const card = nameToCard[c]
         console.log(`removing card ${card}`)
@@ -38,13 +45,41 @@ export const DeckInfoPane = (props) => {
         else if (card.type === 'Unit' && card.rarity === 'Champion') deckClone.championCnt -= 1
         else if (card.type === 'Unit') deckClone.followerCnt -= 1
         else if (card.type === 'Landmark') deckClone.landmarkCnt -= 1
-        
+
         deckClone.deckSize -= 1
         deckClone.cardCnt[card.name] -= 1
         setMyDeck(deckClone)
 
-     }
-    
+    }
+
+    const getStripColor = (region) => {
+        region = region.toLowerCase()
+        console.log(region)
+        if (region === 'bilgewater') return '#c74f0e'
+        if (region === 'demacia') return '#eadcb5'
+        if (region === 'ionia') return '#ffc0cb'
+        if (region === 'freljord') return '#add8e6'
+        if (region === 'piltover & zaun') return '#e8c309'
+        if (region === 'shadow isles') return '#048555'
+        if (region === 'shurima') return '#dbd521'
+        if (region === 'noxus') return '#b90e0a'
+        if (region === 'targon') return '#885eeb'
+    }
+
+    const Row = ({ index, style }) => {
+        console.log(`index is: ${displayCards[index]}`)
+
+        let c = displayCards[index]
+        let imgsrc = images(`./${c.cardCode}-full.png`);
+        return (
+            <div style={style}>
+                <Paper onClick={() => { handleCardClick(c.name) }} style={{ background: getStripColor(c.region), textAlign: 'right' }}>
+                    {`${c.name} X${c.cnt}`}
+                    <img style={{ width: '40%', height: '80px', objectFit: 'cover' }} src={imgsrc.default} />
+                </Paper>
+            </div>
+        )
+    }
 
     return (
         <Grid container direction='column' spacing={6}>
@@ -56,43 +91,54 @@ export const DeckInfoPane = (props) => {
             <Grid item>
                 <Grid container spacing={2} justify='center'>
                     <Grid item>
-                        {`${championCnt}/6`}
+                        {`champs: ${championCnt}/6`}
                     </Grid>
                     <Grid item>
-                        {`${spellCnt}`}
+                        {`spells: ${spellCnt}`}
                     </Grid>
                     <Grid item>
-                        {`${followerCnt}`}
+                        {`units: ${followerCnt}`}
                     </Grid>
                     <Grid item>
-                        {`${landmarkCnt}`}
+                        {`landmarks: ${landmarkCnt}`}
                     </Grid>
                     <Grid item>
-                        {`${deckSize}/40`}
+                        {`total: ${deckSize}/40`}
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item>
+            {/* <Grid item>
                 This is going to be the chart section
                 Temporary place holder
-            </Grid>
+            </Grid> */}
 
             <Grid item>
-                <Grid container direction='column' spacing={1}>
+                {/* <Grid container direction='column' spacing={1} justify='center'>
                     {
                         displayCards.map((c, idx) => {
+                            let imgsrc = images(`./${c.cardCode}-full.png`);
                             if (c.cnt > 0) {
                                 return (
                                     <Grid item>
-                                        <Paper
-                                            onClick={()=>{handleCardClick(c.name)}}
-                                        > {`${c.name}, ${c.cnt}`} </Paper>
+                                        <Paper onClick={()=>{handleCardClick(c.name)}} style={{background: getStripColor(c.region), textAlign: 'right'}}>
+                                            {`${c.name} X${c.cnt}`}    
+                                            <img style={{width: '40%', height: '80px',objectFit: 'cover'}} src={imgsrc.default} />
+                                        </Paper>
+
                                     </Grid>
                                 )
                             }
                         })
                     }
-                </Grid>
+                </Grid> */}
+                <FixedSizeList
+                    height={450}
+                    itemCount={displayCards.length}
+                    itemSize={95}
+                    width={320}
+                >
+                    {Row}
+                </FixedSizeList>
             </Grid>
             <Grid item>
                 <Button>
