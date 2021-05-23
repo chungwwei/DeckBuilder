@@ -256,7 +256,7 @@ export const HomePane = (props) => {
         }
 
         // padding
-        if (original.length / 3 !== 0) {
+        if (original.length % 3 !== 0) {
             let r = 3 - (original.length % 3)
             while (r > 0) {
                 original.push(new GameCard(
@@ -275,7 +275,7 @@ export const HomePane = (props) => {
                     null,
                     null,
                     null,
-                    '01DE002',
+                    'blank',
                     null,
                     null,
                     null,
@@ -360,6 +360,7 @@ export const HomePane = (props) => {
                     filterSpell={filterSpell}
                     filterFollower={filterFollower}
                     filterLandmark={filterLandmark}
+                    filterChampion={filterChampion}
                     filterSetOne={filterSetOne}
                     filterSetTwo={filterSetTwo}
                     filterSetThree={filterSetThree}

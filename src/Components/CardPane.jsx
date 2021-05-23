@@ -72,17 +72,30 @@ export const CardPane = (props) => {
     }
 
     const Row = ({ columnIndex, rowIndex, style }) => {
-        let imgsrc = images(`./${cards[rowIndex * 3 + columnIndex].cardCode}.png`);
-        return (
-            <div className={classes.card} style={style}>
-                <Paper onClick={() => { handleCardClick(cards[rowIndex * 3 + columnIndex]) }}>
-                    <img src={imgsrc.default}
-                        width='300'
-                        height='450'
-                    ></img>
-                </Paper>
-            </div>
-        )
+        if (cards[rowIndex * 3 + columnIndex].cardCode !== 'blank') {
+            let imgsrc = images(`./${cards[rowIndex * 3 + columnIndex].cardCode}.png`);
+            return (
+                <div className={classes.card} style={style}>
+                    <Paper onClick={() => { handleCardClick(cards[rowIndex * 3 + columnIndex]) }}>
+                        <img src={imgsrc.default}
+                            width='300'
+                            height='450'
+                        ></img>
+                    </Paper>
+                </div>
+            )
+        } else {
+            return (
+                <div className={classes.card} style={style}>
+                    <Paper>
+                        {/* <img src={}
+                            width='300'
+                            height='450'
+                        ></img> */}
+                    </Paper>
+                </div>
+            )
+        }
     }
 
     return (

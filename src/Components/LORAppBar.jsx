@@ -161,6 +161,7 @@ export const LORAppBar = (props) => {
     filterCommon,
     filterEpic,
     filterRare,
+    filterChampion,
 
     filterSpell,
     filterFollower,
@@ -257,7 +258,7 @@ export const LORAppBar = (props) => {
     if (r === 'common' && filterCommon) return classes.manaOn
     if (r === 'rare' && filterRare) return classes.manaOn
     if (r === 'epic' && filterEpic) return classes.manaOn
-    if (r === 'champion' && setFilterChampion) return classes.manaOn
+    if (r === 'champion' && filterChampion) return classes.manaOn
     return classes.manaOff
   }
 
