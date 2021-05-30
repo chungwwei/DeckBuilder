@@ -6,7 +6,7 @@ import { GameCard } from '../Plain/GameCard';
 import { FixedSizeGrid } from 'react-window';
 import { Snackbar } from '@material-ui/core';
 
-const images = require.context('../../public/images', true);
+const images = require.context('../../public/images/cards', true);
 
 const useStyles = makeStyles((theme) =>
     createStyles({

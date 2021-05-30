@@ -269,7 +269,7 @@ export const LORAppBar = (props) => {
     return classes.manaOff
   }
 
-  const names = ['Attune', 'Capture', 'Burst', 'Barrier', 'Fast', 'Overwhelm']
+  const names = ['Attune', 'Capture', 'Burst', 'Barrier', 'Challenger', 'Deep', 'Double Attack', 'Elusive', 'Enlightened', 'Ephermal', 'Fast', 'Fearsome', 'Focus', 'Frostbite', 'Fury', 'Last Breath', 'Lifesteal', 'Overwhelm', 'Regeneration', 'Slow', 'Tough']
   const regions = ['demacia', 'bilgewater', 'ionia', 'freljord', 'piltoverzaun', 'shadowisles', 'shurima', 'noxus', 'targon']
   const rarity = ['champion', 'epic', 'rare', 'common']
   const cardSets = ['set1', 'set2', 'set3', 'set4']

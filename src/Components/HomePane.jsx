@@ -6,6 +6,9 @@ import { LORAppBar } from './LORAppBar'
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import dataset1 from '../Data/set1-en_us.json'
+import dataset2 from '../Data/set2-en_us.json'
+import dataset3 from '../Data/set3-en_us.json'
+import dataset4 from '../Data/set4-en_us.json'
 import { GameCard } from '../Plain/GameCard'
 import { Deck } from '../Plain/Deck'
 // import { HomeIcon } from '@material-ui/icons/Home'
@@ -36,6 +39,111 @@ var cards = []
 
 for (const i in dataset1) {
     const c = dataset1[i]
+    const n = new GameCard(
+        c.associatedCards,
+        c.associatedCardRef,
+        c.assets,
+        c.region,
+        c.regionRef,
+        c.attack,
+        c.cost,
+        c.health,
+        c.description,
+        c.descriptionRaw,
+        c.levelupDescription,
+        c.levelupDescriptionRaw,
+        c.flavorText,
+        c.artistName,
+        c.name,
+        c.cardCode,
+        c.keywords,
+        c.keywordRefs,
+        c.spellSpeed,
+        c.spellSpeedRef,
+        c.rarity,
+        c.rarityRef,
+        c.subtype,
+        c.subtypes,
+        c.supertype,
+        c.type,
+        c.collectible,
+        c.set
+    )
+    cards.push(n)
+}
+
+for (const i in dataset2) {
+    const c = dataset2[i]
+    const n = new GameCard(
+        c.associatedCards,
+        c.associatedCardRef,
+        c.assets,
+        c.region,
+        c.regionRef,
+        c.attack,
+        c.cost,
+        c.health,
+        c.description,
+        c.descriptionRaw,
+        c.levelupDescription,
+        c.levelupDescriptionRaw,
+        c.flavorText,
+        c.artistName,
+        c.name,
+        c.cardCode,
+        c.keywords,
+        c.keywordRefs,
+        c.spellSpeed,
+        c.spellSpeedRef,
+        c.rarity,
+        c.rarityRef,
+        c.subtype,
+        c.subtypes,
+        c.supertype,
+        c.type,
+        c.collectible,
+        c.set
+    )
+    cards.push(n)
+}
+
+for (const i in dataset3) {
+    const c = dataset3[i]
+    const n = new GameCard(
+        c.associatedCards,
+        c.associatedCardRef,
+        c.assets,
+        c.region,
+        c.regionRef,
+        c.attack,
+        c.cost,
+        c.health,
+        c.description,
+        c.descriptionRaw,
+        c.levelupDescription,
+        c.levelupDescriptionRaw,
+        c.flavorText,
+        c.artistName,
+        c.name,
+        c.cardCode,
+        c.keywords,
+        c.keywordRefs,
+        c.spellSpeed,
+        c.spellSpeedRef,
+        c.rarity,
+        c.rarityRef,
+        c.subtype,
+        c.subtypes,
+        c.supertype,
+        c.type,
+        c.collectible,
+        c.set
+    )
+    cards.push(n)
+}
+
+for (const i in dataset4) {
+    const c = dataset4[i]
     const n = new GameCard(
         c.associatedCards,
         c.associatedCardRef,
@@ -155,7 +263,7 @@ export const HomePane = (props) => {
         if (filterIonia) { championFilters.push((c) => c.regionRef.toLowerCase() === 'ionia') }
         if (filterTargon) { championFilters.push((c) => c.regionRef.toLowerCase() === 'targon') }
         if (filterNoxus) { championFilters.push((c) => c.regionRef.toLowerCase() === 'noxus') }
-        if (filterPiltoverZaun) { championFilters.push((c) => c.regionRef.toLowerCase() === 'piloverzaun') }
+        if (filterPiltoverZaun) { championFilters.push((c) => c.regionRef.toLowerCase() === 'piltoverzaun') }
         if (filterShurima) { championFilters.push((c) => c.regionRef.toLowerCase() === 'shurima') }
         if (filterShadowIsles) { championFilters.push((c) => c.regionRef.toLowerCase() === 'shadowisles') }
 
