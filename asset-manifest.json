@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/DeckBuilder/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/DeckBuilder/static/js/main.45ddbb8e.chunk.js",
-    "main.js.map": "/DeckBuilder/static/js/main.45ddbb8e.chunk.js.map",
-    "runtime-main.js": "/DeckBuilder/static/js/runtime-main.b1ca7dcc.js",
-    "runtime-main.js.map": "/DeckBuilder/static/js/runtime-main.b1ca7dcc.js.map",
-    "static/js/2.7107100f.chunk.js": "/DeckBuilder/static/js/2.7107100f.chunk.js",
-    "static/js/2.7107100f.chunk.js.map": "/DeckBuilder/static/js/2.7107100f.chunk.js.map",
-    "static/js/3.b11f1a3b.chunk.js": "/DeckBuilder/static/js/3.b11f1a3b.chunk.js",
-    "static/js/3.b11f1a3b.chunk.js.map": "/DeckBuilder/static/js/3.b11f1a3b.chunk.js.map",
+    "main.js": "/DeckBuilder/static/js/main.d3f47be8.chunk.js",
+    "main.js.map": "/DeckBuilder/static/js/main.d3f47be8.chunk.js.map",
+    "runtime-main.js": "/DeckBuilder/static/js/runtime-main.99884d03.js",
+    "runtime-main.js.map": "/DeckBuilder/static/js/runtime-main.99884d03.js.map",
+    "static/js/2.9ba17ff1.chunk.js": "/DeckBuilder/static/js/2.9ba17ff1.chunk.js",
+    "static/js/2.9ba17ff1.chunk.js.map": "/DeckBuilder/static/js/2.9ba17ff1.chunk.js.map",
+    "static/js/3.4c9ab7f9.chunk.js": "/DeckBuilder/static/js/3.4c9ab7f9.chunk.js",
+    "static/js/3.4c9ab7f9.chunk.js.map": "/DeckBuilder/static/js/3.4c9ab7f9.chunk.js.map",
     "index.html": "/DeckBuilder/index.html",
     "static/css/main.9d5b29c0.chunk.css.map": "/DeckBuilder/static/css/main.9d5b29c0.chunk.css.map",
-    "static/js/2.7107100f.chunk.js.LICENSE.txt": "/DeckBuilder/static/js/2.7107100f.chunk.js.LICENSE.txt",
+    "static/js/2.9ba17ff1.chunk.js.LICENSE.txt": "/DeckBuilder/static/js/2.9ba17ff1.chunk.js.LICENSE.txt",
     "static/media/01DE001-full.png": "/DeckBuilder/static/media/01DE001-full.ed21aa1e.png",
     "static/media/01DE001.png": "/DeckBuilder/static/media/01DE001.92c01490.png",
     "static/media/01DE002-full.png": "/DeckBuilder/static/media/01DE002-full.e4a0b245.png",
@@ -974,9 +974,9 @@
     "static/media/set4.png": "/DeckBuilder/static/media/set4.17f944e2.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.b1ca7dcc.js",
-    "static/js/2.7107100f.chunk.js",
+    "static/js/runtime-main.99884d03.js",
+    "static/js/2.9ba17ff1.chunk.js",
     "static/css/main.9d5b29c0.chunk.css",
-    "static/js/main.45ddbb8e.chunk.js"
+    "static/js/main.d3f47be8.chunk.js"
   ]
 }
