@@ -14,17 +14,26 @@ export const DeckInfoPane = (props) => {
         nameToCard
     } = props
 
-    const displayCards = []
+    var displayCards = []
     for (const c in myDeck.cardCnt) {
         if (myDeck.cardCnt[c] > 0) {
             displayCards.push({
                 name: c,
                 cnt: myDeck.cardCnt[c],
                 cardCode: nameToCard[c].cardCode,
-                region: nameToCard[c].region
+                region: nameToCard[c].region,
+                cost: nameToCard[c].cost
             })
         }
     }
+
+
+    displayCards = displayCards.sort((a, b) => {
+        if (a.cost === b.cost) {
+            return a.name.localeCompare(b.name)
+        }
+        return a.cost - b.cost
+    })
 
     const spellCnt = myDeck.spellCnt
     const championCnt = myDeck.championCnt

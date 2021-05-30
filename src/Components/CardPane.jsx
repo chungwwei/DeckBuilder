@@ -30,16 +30,29 @@ export const CardPane = (props) => {
         myDeck,
         setMyList,
         setMyDeck,
+        nameToCard,
         setDisplayCards,
         setRefresh
     } = props
 
     const handleCardClick = (card) => {
 
-        // check if card to be added is in the within same region
-        for (const region in myDeck.regionCnt) {
-
+        // check if card to be added is in the within same two regions
+        var s = new Set()
+        for (const c in myDeck.cardCnt) {
+            if (myDeck.cardCnt[c] > 0) {
+                s.add(nameToCard[c].region)
+            }
         }
+        for (const region of s) {
+            console.log(`region: ${region}`)
+        }
+        var flag = false
+        for (const region of s) {
+            if (card.region === region) flag = true
+        }
+        
+        if (!flag && s.size >= 2) return
 
         if (card.rarity === 'Champion' && myDeck.championCnt >= 6) return
         if (myDeck.cards.length >= 40) return

@@ -378,6 +378,7 @@ export const HomePane = (props) => {
                                 setMyList={setMyList}
                                 setMyDeck={setMyDeck}
                                 setRefresh={setRefresh}
+                                nameToCard={nameToCard}
                             ></CardPane>
                         </Paper>
                     </Grid>
