@@ -1,9 +1,10 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { GameCard } from '../Plain/GameCard';
 import { FixedSizeGrid } from 'react-window';
+import { Snackbar } from '@material-ui/core';
 
 const images = require.context('../../public/images', true);
 
@@ -24,6 +25,9 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const CardPane = (props) => {
+
+    const [open, setOpen] = useState(false)
+
     const classes = useStyles();
     const {
         cards,
@@ -32,7 +36,8 @@ export const CardPane = (props) => {
         setMyDeck,
         nameToCard,
         setDisplayCards,
-        setRefresh
+        setRefresh,
+        setOpenAddedCard
     } = props
 
     const handleCardClick = (card) => {
@@ -51,7 +56,7 @@ export const CardPane = (props) => {
         for (const region of s) {
             if (card.region === region) flag = true
         }
-        
+
         if (!flag && s.size >= 2) return
 
         if (card.rarity === 'Champion' && myDeck.championCnt >= 6) return
@@ -82,6 +87,7 @@ export const CardPane = (props) => {
 
         setMyDeck(deckClone)
         setMyList(prev => [...prev, card])
+        setOpen(prev => !prev)
     }
 
     const Row = ({ columnIndex, rowIndex, style }) => {
@@ -133,16 +139,17 @@ export const CardPane = (props) => {
                 })
             }
         </Grid> */
-        <FixedSizeGrid
-            width={1000}
-            height={680}
-            columnCount={3}
-            columnWidth={300}
-            rowCount={cards.length / 3}
-            rowHeight={450}
-        >
-            {Row}
-        </FixedSizeGrid>
-
+        <div>
+            <FixedSizeGrid
+                width={1000}
+                height={680}
+                columnCount={3}
+                columnWidth={300}
+                rowCount={cards.length / 3}
+                rowHeight={450}
+            >
+                {Row}
+            </FixedSizeGrid>
+        </div>
     )
 }

@@ -2,6 +2,7 @@ import { Button, Grid, Paper, TextField } from '@material-ui/core'
 import { ContactlessOutlined } from '@material-ui/icons';
 import { React } from 'react'
 import { FixedSizeList } from 'react-window';
+import { Card, DeckEncoder } from 'runeterra';
 
 const images = require.context('../../public/images', true);
 export const DeckInfoPane = (props) => {
@@ -59,6 +60,21 @@ export const DeckInfoPane = (props) => {
         deckClone.cardCnt[card.name] -= 1
         setMyDeck(deckClone)
 
+    }
+
+    const handleExportClick = () => {
+        let cards = []
+        for (const c in myDeck.cardCnt) {
+            if (myDeck.cardCnt[c] > 0) {
+                let cnt = myDeck.cardCnt[c]
+                let cardCode = nameToCard[c].cardCode
+                let card = new Card(cardCode, cnt)
+                cards.push(card)
+            }
+        }
+
+        const code = DeckEncoder.encode(cards)
+        alert(code)
     }
 
     const getStripColor = (region) => {
@@ -150,7 +166,7 @@ export const DeckInfoPane = (props) => {
                 </FixedSizeList>
             </Grid>
             <Grid item>
-                <Button>
+                <Button onClick={()=>handleExportClick()}>
                     Export
                 </Button>
             </Grid>

@@ -1,4 +1,4 @@
-import { Grid, Paper, AppBar, Toolbar, Button, IconButton, Typography, setRef } from '@material-ui/core'
+import { Grid, Paper, AppBar, Toolbar, Button, IconButton, Typography, setRef, Snackbar } from '@material-ui/core'
 import { React, useState, useEffect } from 'react'
 import { CardPane } from './CardPane'
 import { DeckInfoPane } from './DeckInfoPane'
@@ -70,9 +70,11 @@ for (const i in dataset1) {
 }
 
 cards = cards.filter((c) => {
+    if (c.rarity === 'None')
+        return false
     if (c.supertype === 'Champion' && c.rarity === 'None')
         return false
-    for (let i = 0; i < c.keywords.length; i ++) {
+    for (let i = 0; i < c.keywords.length; i++) {
         if (c.keywords[i] === 'Skill')
             return false
     }
@@ -80,7 +82,7 @@ cards = cards.filter((c) => {
 })
 
 const nameToCard = {}
-for (let i = 0; i < cards.length; i ++) {
+for (let i = 0; i < cards.length; i++) {
     nameToCard[cards[i].name] = cards[i]
 }
 
@@ -142,6 +144,7 @@ export const HomePane = (props) => {
     const [filterRare, setFilterRare] = useState(false)
     const [filterEpic, setFilterEpic] = useState(false)
 
+    const [openAddedCard, setOpenAddedCard] = useState(false)
 
     var original = [...cards]
     useEffect(() => {
@@ -201,9 +204,9 @@ export const HomePane = (props) => {
         }
 
         var rarityFilters = []
-        if (filterCommon) { rarityFilters.push((c) => c.rarity === 'COMMON')}
-        if (filterEpic) { rarityFilters.push((c) => c.rarity === 'EPIC')}
-        if (filterRare) { rarityFilters.push((c) => c.rarity === 'RARE')}
+        if (filterCommon) { rarityFilters.push((c) => c.rarity === 'COMMON') }
+        if (filterEpic) { rarityFilters.push((c) => c.rarity === 'EPIC') }
+        if (filterRare) { rarityFilters.push((c) => c.rarity === 'RARE') }
         if (filterChampion) { rarityFilters.push((c) => c.rarity === 'Champion') }
 
         if (rarityFilters.length > 0) {
@@ -217,9 +220,9 @@ export const HomePane = (props) => {
 
 
         var typeFilters = []
-        if (filterSpell) { typeFilters.push((c) => c.type === 'Spell')}
-        if (filterFollower) { typeFilters.push((c) => c.type === 'Unit' && c.supertype !== 'Champion')}
-        if (filterLandmark) { typeFilters.push((c) => c.type === 'Landmark')}
+        if (filterSpell) { typeFilters.push((c) => c.type === 'Spell') }
+        if (filterFollower) { typeFilters.push((c) => c.type === 'Unit' && c.supertype !== 'Champion') }
+        if (filterLandmark) { typeFilters.push((c) => c.type === 'Landmark') }
 
         if (typeFilters.length > 0) {
             original = original.filter((c) => {
@@ -288,7 +291,7 @@ export const HomePane = (props) => {
                     null,
                     null,
                     null
-    
+
                 ))
                 r -= 1
             }
@@ -296,8 +299,8 @@ export const HomePane = (props) => {
 
         setDisplayCards(original)
 
-    }, [filterBilgewater, filterDemacia, filterFreljord, filterIonia, filterPiltoverZaun, filterNoxus, filterShadowIsles, filterShurima, filterTargon, 
-        filterSetOne, filterSetTwo, filterSetThree, filterSetFour, 
+    }, [filterBilgewater, filterDemacia, filterFreljord, filterIonia, filterPiltoverZaun, filterNoxus, filterShadowIsles, filterShurima, filterTargon,
+        filterSetOne, filterSetTwo, filterSetThree, filterSetFour,
         filterManaOne, filterManaTwo, filterManaThree, filterManaFour, filterManaFive, filterManaSix, filterManaSeven,
         filterChampion, filterSpell, filterLandmark, filterFollower,
         filterCommon, filterRare, filterEpic,
@@ -378,6 +381,7 @@ export const HomePane = (props) => {
                                 setMyList={setMyList}
                                 setMyDeck={setMyDeck}
                                 setRefresh={setRefresh}
+                                setOpenAddedCard={setOpenAddedCard}
                                 nameToCard={nameToCard}
                             ></CardPane>
                         </Paper>
