@@ -1,10 +1,10 @@
-import { Button, Grid, Paper, TextField } from '@material-ui/core'
+import { Button, Grid, Paper, TextField, Typography } from '@material-ui/core'
 import { ContactlessOutlined } from '@material-ui/icons';
 import { React } from 'react'
 import { FixedSizeList } from 'react-window';
 import { Card, DeckEncoder } from 'runeterra';
 
-const images = require.context('../../public/images', true);
+const images = require.context('../../public/images/cards', true);
 export const DeckInfoPane = (props) => {
 
     const {
@@ -43,7 +43,7 @@ export const DeckInfoPane = (props) => {
     const deckSize = myDeck.deckSize
 
     const handleCardClick = (c) => {
-        console.log(c)
+
         const card = nameToCard[c]
         console.log(`removing card ${card}`)
 
@@ -116,7 +116,9 @@ export const DeckInfoPane = (props) => {
             <Grid item>
                 <Grid container spacing={2} justify='center'>
                     <Grid item>
-                        {`champs: ${championCnt}/6`}
+                        <Typography>
+                            {`champs: ${championCnt}/6`}
+                        </Typography>
                     </Grid>
                     <Grid item>
                         {`spells: ${spellCnt}`}
