@@ -107,7 +107,7 @@ export const DeckInfoPane = (props) => {
     }
 
     return (
-        <Grid container direction='column' spacing={6}>
+        <Grid container direction='column' spacing={6} justify='center'>
             <Grid item>
                 <form noValidate autoComplete="off">
                     <TextField id="outlined-basic" label="Outlined" variant="outlined" />
@@ -116,9 +116,7 @@ export const DeckInfoPane = (props) => {
             <Grid item>
                 <Grid container spacing={2} justify='center'>
                     <Grid item>
-                        <Typography>
-                            {`champs: ${championCnt}/6`}
-                        </Typography>
+                        {`champs: ${championCnt}/6`}
                     </Grid>
                     <Grid item>
                         {`spells: ${spellCnt}`}
@@ -138,7 +136,11 @@ export const DeckInfoPane = (props) => {
                 This is going to be the chart section
                 Temporary place holder
             </Grid> */}
-
+            <Grid item>
+                <Button variant='outlined' color='primary' onClick={() => handleExportClick()}>
+                    Export
+                </Button>
+            </Grid>
             <Grid item>
                 {/* <Grid container direction='column' spacing={1} justify='center'>
                     {
@@ -159,7 +161,7 @@ export const DeckInfoPane = (props) => {
                     }
                 </Grid> */}
                 <FixedSizeList
-                    height={450}
+                    height={window.innerHeight - 390}
                     itemCount={displayCards.length}
                     itemSize={95}
                     width={320}
@@ -167,11 +169,8 @@ export const DeckInfoPane = (props) => {
                     {Row}
                 </FixedSizeList>
             </Grid>
-            <Grid item>
-                <Button onClick={()=>handleExportClick()}>
-                    Export
-                </Button>
-            </Grid>
+
+
         </Grid>
 
     )

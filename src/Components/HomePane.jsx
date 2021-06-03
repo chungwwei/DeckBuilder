@@ -363,7 +363,8 @@ export const HomePane = (props) => {
         })
 
         if (searchTextField !== '') {
-            original = original.filter(c => c.name.toLowerCase() === searchTextField.toLowerCase())
+            // original = original.filter(c => c.name.toLowerCase() === )
+            original = original.filter(c => c.name.toLowerCase().includes(searchTextField.toLowerCase()))
         }
 
         // padding
@@ -479,7 +480,7 @@ export const HomePane = (props) => {
                 />
             </div>
             <div>
-                <Grid container>
+                <Grid container justify='center'>
                     <Grid item sm={9} className={classes.leftPane}>
                         <Paper>
                             <CardPane

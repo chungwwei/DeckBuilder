@@ -5,12 +5,15 @@ import Grid from '@material-ui/core/Grid';
 import { GameCard } from '../Plain/GameCard';
 import { FixedSizeGrid } from 'react-window';
 import { Snackbar, Typography } from '@material-ui/core';
-import { Opacity, PlayCircleFilledWhite } from '@material-ui/icons';
 
 const images = require.context('../../public/images/cards', true);
 
 const useStyles = makeStyles((theme) =>
     createStyles({
+        ttfont: {
+            font: 'Roboto',
+            fontSize: '20'
+        },
         root: {
             flexGrow: 1,
         },
@@ -44,18 +47,18 @@ export const CardPane = (props) => {
     const getCardCnt = (card) => {
         if (!myDeck.cardCnt.hasOwnProperty(card.name)) {
             return 0
-        } 
+        }
         return myDeck.cardCnt[card.name]
     }
 
     const getImgOpacity = (card) => {
         if (!myDeck.cardCnt.hasOwnProperty(card.name)) {
             return '1.0'
-        } 
+        }
         if (myDeck.cardCnt[card.name] === 3) {
             return '0.6'
         }
-        
+
         return '1.0'
     }
 
@@ -114,16 +117,14 @@ export const CardPane = (props) => {
             let imgsrc = images(`./${cards[rowIndex * 3 + columnIndex].cardCode}.png`);
             return (
                 <div className={classes.card} style={style}>
-                    <Paper onClick={() => { handleCardClick(cards[rowIndex * 3 + columnIndex]) }} style={{position: 'relative'}}>
+                    <Paper onClick={() => { handleCardClick(cards[rowIndex * 3 + columnIndex]) }} style={{ position: 'relative' }}>
                         <img src={imgsrc.default}
                             width='300'
                             height='450'
-                            style={{opacity: getImgOpacity(cards[rowIndex * 3 + columnIndex])}}
+                            style={{ opacity: getImgOpacity(cards[rowIndex * 3 + columnIndex]) }}
                         ></img>
-                        <div style={{position: 'absolute', top: '0', width: '100%'}}>
-                            <Typography>
-                                {`${getCardCnt(cards[rowIndex * 3 + columnIndex])} / 3`}
-                            </Typography>
+                        <div className={classes.ttfont} style={{ position: 'absolute', top: '0', width: '100%'}}>
+                            {`${getCardCnt(cards[rowIndex * 3 + columnIndex])} / 3`}
                         </div>
                     </Paper>
                 </div>
@@ -164,10 +165,10 @@ export const CardPane = (props) => {
                 })
             }
         </Grid> */
-        <div>
+        <div style={{ justify: 'center' }}>
             <FixedSizeGrid
                 width={1000}
-                height={680}
+                height={window.innerHeight - 60}
                 columnCount={3}
                 columnWidth={300}
                 rowCount={cards.length / 3}
