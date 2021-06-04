@@ -1,10 +1,11 @@
-import { Button, Grid, Paper, TextField, Typography } from '@material-ui/core'
-import { ContactlessOutlined } from '@material-ui/icons';
+import { Button, Grid, Icon, Paper, TextField, Typography } from '@material-ui/core'
+import { ContactlessOutlined, FunctionsOutlined } from '@material-ui/icons';
 import { React } from 'react'
 import { FixedSizeList } from 'react-window';
 import { Card, DeckEncoder } from 'runeterra';
 
 const images = require.context('../../public/images/cards', true);
+const typeImgs = require.context('../../public/images/cardtype', true);
 export const DeckInfoPane = (props) => {
 
     const {
@@ -106,29 +107,39 @@ export const DeckInfoPane = (props) => {
         )
     }
 
+    const championTypeImg = typeImgs('./champion.svg').default
+    const followerTypeImg = typeImgs('./follower.svg').default
+    const landmarkTypeImg = typeImgs('./landmark.svg').default
+    const spellTypeImg = typeImgs('./spell.svg').default
     return (
-        <Grid container direction='column' spacing={6} justify='center'>
+        <Grid container direction='column' spacing={2} justify='center'>
             <Grid item>
-                <form noValidate autoComplete="off">
+                {/* <form noValidate autoComplete="off">
                     <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-                </form>
+                </form> */}
+                <h3> My Deck </h3>
             </Grid>
             <Grid item>
-                <Grid container spacing={2} justify='center'>
+                <Grid container spacing={3} justify='center'>
                     <Grid item>
-                        {`champs: ${championCnt}/6`}
+                        <img src={championTypeImg}></img>
+                        {`${championCnt}/6`}
                     </Grid>
                     <Grid item>
-                        {`spells: ${spellCnt}`}
+                        <img src={spellTypeImg}></img>
+                        {`${spellCnt}`}
                     </Grid>
                     <Grid item>
-                        {`units: ${followerCnt}`}
+                        <img src={followerTypeImg}></img>
+                        {`${followerCnt}`}
                     </Grid>
                     <Grid item>
-                        {`landmarks: ${landmarkCnt}`}
+                        <img src={landmarkTypeImg} height='25px' width='25px'></img>
+                        {`${landmarkCnt}`}
                     </Grid>
                     <Grid item>
-                        {`total: ${deckSize}/40`}
+                        <FunctionsOutlined />
+                        {`${deckSize}/40`}
                     </Grid>
                 </Grid>
             </Grid>
@@ -161,10 +172,10 @@ export const DeckInfoPane = (props) => {
                     }
                 </Grid> */}
                 <FixedSizeList
-                    height={window.innerHeight - 390}
+                    height={window.innerHeight - 280}
                     itemCount={displayCards.length}
                     itemSize={95}
-                    width={320}
+                    width={345}
                 >
                     {Row}
                 </FixedSizeList>
