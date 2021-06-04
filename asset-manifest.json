@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/DeckBuilder/static/css/main.d8a6efbe.chunk.css",
-    "main.js": "/DeckBuilder/static/js/main.7cf748a3.chunk.js",
-    "main.js.map": "/DeckBuilder/static/js/main.7cf748a3.chunk.js.map",
-    "runtime-main.js": "/DeckBuilder/static/js/runtime-main.89828d05.js",
-    "runtime-main.js.map": "/DeckBuilder/static/js/runtime-main.89828d05.js.map",
-    "static/js/2.87cd136a.chunk.js": "/DeckBuilder/static/js/2.87cd136a.chunk.js",
-    "static/js/2.87cd136a.chunk.js.map": "/DeckBuilder/static/js/2.87cd136a.chunk.js.map",
-    "static/js/3.51602419.chunk.js": "/DeckBuilder/static/js/3.51602419.chunk.js",
-    "static/js/3.51602419.chunk.js.map": "/DeckBuilder/static/js/3.51602419.chunk.js.map",
+    "main.js": "/DeckBuilder/static/js/main.dc2104e4.chunk.js",
+    "main.js.map": "/DeckBuilder/static/js/main.dc2104e4.chunk.js.map",
+    "runtime-main.js": "/DeckBuilder/static/js/runtime-main.4b03c6be.js",
+    "runtime-main.js.map": "/DeckBuilder/static/js/runtime-main.4b03c6be.js.map",
+    "static/js/2.270f2a74.chunk.js": "/DeckBuilder/static/js/2.270f2a74.chunk.js",
+    "static/js/2.270f2a74.chunk.js.map": "/DeckBuilder/static/js/2.270f2a74.chunk.js.map",
+    "static/js/3.6a3a4b0e.chunk.js": "/DeckBuilder/static/js/3.6a3a4b0e.chunk.js",
+    "static/js/3.6a3a4b0e.chunk.js.map": "/DeckBuilder/static/js/3.6a3a4b0e.chunk.js.map",
     "index.html": "/DeckBuilder/index.html",
     "static/css/main.d8a6efbe.chunk.css.map": "/DeckBuilder/static/css/main.d8a6efbe.chunk.css.map",
-    "static/js/2.87cd136a.chunk.js.LICENSE.txt": "/DeckBuilder/static/js/2.87cd136a.chunk.js.LICENSE.txt",
+    "static/js/2.270f2a74.chunk.js.LICENSE.txt": "/DeckBuilder/static/js/2.270f2a74.chunk.js.LICENSE.txt",
     "static/media/01DE001-full.png": "/DeckBuilder/static/media/01DE001-full.ed21aa1e.png",
     "static/media/01DE001.png": "/DeckBuilder/static/media/01DE001.92c01490.png",
     "static/media/01DE002-full.png": "/DeckBuilder/static/media/01DE002-full.e4a0b245.png",
@@ -2366,16 +2366,20 @@
     "static/media/04SI016.png": "/DeckBuilder/static/media/04SI016.a5195b61.png",
     "static/media/04SI017-full.png": "/DeckBuilder/static/media/04SI017-full.39eeab84.png",
     "static/media/04SI017.png": "/DeckBuilder/static/media/04SI017.53b4af2a.png",
+    "static/media/champion.svg": "/DeckBuilder/static/media/champion.c575e404.svg",
+    "static/media/follower.svg": "/DeckBuilder/static/media/follower.e01ac193.svg",
     "static/media/icon-shurima.png": "/DeckBuilder/static/media/icon-shurima.1b8ac624.png",
     "static/media/icon-targon.png": "/DeckBuilder/static/media/icon-targon.c5241d9e.png",
+    "static/media/landmark.svg": "/DeckBuilder/static/media/landmark.f824744b.svg",
     "static/media/set1.png": "/DeckBuilder/static/media/set1.9cef0988.png",
     "static/media/set2.png": "/DeckBuilder/static/media/set2.59884a0a.png",
-    "static/media/set4.png": "/DeckBuilder/static/media/set4.17f944e2.png"
+    "static/media/set4.png": "/DeckBuilder/static/media/set4.17f944e2.png",
+    "static/media/spell.svg": "/DeckBuilder/static/media/spell.56bb715c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.89828d05.js",
-    "static/js/2.87cd136a.chunk.js",
+    "static/js/runtime-main.4b03c6be.js",
+    "static/js/2.270f2a74.chunk.js",
     "static/css/main.d8a6efbe.chunk.css",
-    "static/js/main.7cf748a3.chunk.js"
+    "static/js/main.dc2104e4.chunk.js"
   ]
 }
