@@ -300,7 +300,7 @@ export const HomePane = (props) => {
         if (filterManaFour) { manaFilters.push((c) => c.cost === 4) }
         if (filterManaFive) { manaFilters.push((c) => c.cost === 5) }
         if (filterManaSix) { manaFilters.push((c) => c.cost === 6) }
-        if (filterManaSeven) { manaFilters.push((c) => c.cost === 7) }
+        if (filterManaSeven) { manaFilters.push((c) => c.cost >= 7) }
 
         if (manaFilters.length > 0) {
             original = original.filter((c) => {
@@ -466,6 +466,7 @@ export const HomePane = (props) => {
                     filterManaFour={filterManaFour}
                     filterManaFive={filterManaFive}
                     filterManaSix={filterManaSix}
+                    filterManaSeven={filterManaSeven}
                     filterCommon={filterCommon}
                     filterRare={filterRare}
                     filterEpic={filterEpic}

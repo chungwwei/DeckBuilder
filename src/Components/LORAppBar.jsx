@@ -250,7 +250,7 @@ export const LORAppBar = (props) => {
     if (mana === 4 && filterManaFour) return classes.manaOn
     if (mana === 5 && filterManaFive) return classes.manaOn
     if (mana === 6 && filterManaSix) return classes.manaOn
-    if (mana === 7 && filterManaSeven) return classes.manaOn
+    if (mana >= 7  && filterManaSeven) return classes.manaOn
     return classes.manaOff
   }
 
@@ -309,7 +309,7 @@ export const LORAppBar = (props) => {
     if (m === 4) return setFilterManaFour
     if (m === 5) return setFilterManaFive
     if (m === 6) return setFilterManaSix
-    if (m === 7) return setFilterManaSeven
+    if (m >= 7) return setFilterManaSeven
   }
 
   const rarityClickFunctions = (r) => {
@@ -386,9 +386,7 @@ export const LORAppBar = (props) => {
           let func = manaOnClickFunctions(s);
           return (
             <Grid item>
-              <IconButton onClick={() => func(old => !old)}>
-                <Button className={getFilterManaButtonStyle(s)}> {s} </Button>
-              </IconButton>
+              <Button onClick={() => func(old => !old)} className={getFilterManaButtonStyle(s)}> {s} </Button>
             </Grid>
           )
         }

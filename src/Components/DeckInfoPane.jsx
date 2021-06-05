@@ -3,6 +3,7 @@ import { ContactlessOutlined, FunctionsOutlined, BarChartOutlined } from '@mater
 import { React, useState } from 'react'
 import { FixedSizeList } from 'react-window';
 import { Card, DeckEncoder } from 'runeterra';
+import { ExportDialog } from './ExportDialog';
 import { StatisticDialog } from './StatisticDialog';
 
 const images = require.context('../../public/images/cards', true);
@@ -11,6 +12,8 @@ const manaImgs = require.context('../../public/images/manas', true)
 export const DeckInfoPane = (props) => {
 
     const [openStatisticDialog, setOpenStatisticDialog] = useState(false)
+    const [openExportDialog, setOpenExportDialog] = useState(false)
+    const [code, setCode] = useState('')
 
     const {
         myList,
@@ -83,7 +86,9 @@ export const DeckInfoPane = (props) => {
         }
 
         const code = DeckEncoder.encode(cards)
-        alert(code)
+        setOpenExportDialog(true)
+        setCode(code)
+
     }
 
     const getStripColor = (region) => {
@@ -203,6 +208,12 @@ export const DeckInfoPane = (props) => {
                 nameToCard={nameToCard}
             >
             </StatisticDialog>
+            <ExportDialog
+                openExportDialog={openExportDialog}
+                setOpenExportDialog={setOpenExportDialog}
+                code={code}
+            >
+            </ExportDialog>
         </div>
     )
 }

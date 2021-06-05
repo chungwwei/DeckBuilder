@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { RadialChart, XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, VerticalBarSeries } from 'react-vis';
-import { Divider, Paper, Grid } from '@material-ui/core';
+import { Divider, Paper, Grid, Container } from '@material-ui/core';
 
 const styles = (theme) => ({
     root: {
@@ -154,84 +154,81 @@ export const StatisticDialog = (props) => {
 
     return (
         <div>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={openStatisticDialog}>
+            <Dialog style={{ width: '1500px' }} onClose={handleClose} aria-labelledby="customized-dialog-title" open={openStatisticDialog}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     My Deck Stats
                 </DialogTitle>
                 <DialogContent dividers>
-                    <Grid container justify='center' spacing={2} direction='column'>
+                    <Grid container spacing={2} style={{width: '850px'}}>
                         <Grid item>
-                            <Grid container justify='center' spacing={2}>
-                                <Grid item>
-                                    <Paper>
-                                        <Typography>
-                                            Type
-                                        </Typography>
-                                        <RadialChart
-                                            width={400}
-                                            height={400}
-                                            innerRadius={80}
-                                            radius={140}
-                                            colorType="literal"
-                                            data={typeData}
-                                            showLabels={true}
-                                            labelsAboveChildren={true}
-                                            labelsStyle={{ fontSize: 14, color: "#ff0000" }}
-                                        />
-                                    </Paper>
-                                </Grid>
-                                <Grid item>
-                                    <Paper>
-                                        <Typography>
-                                            Rarity
+                            <Paper>
+                                <Typography>
+                                    Type
                                 </Typography>
-                                        <RadialChart
-                                            width={400}
-                                            height={400}
-                                            innerRadius={80}
-                                            radius={140}
-                                            colorType='literal'
-                                            data={rarityData}
-                                            showLabels={true}
-                                            labelsStyle={{ fontSize: 14, color: '#ff0000' }}
-                                        />
-                                    </Paper>
-                                </Grid>
-                            </Grid>
+                                <RadialChart
+                                    width={400}
+                                    height={400}
+                                    innerRadius={80}
+                                    radius={140}
+                                    colorType="literal"
+                                    data={typeData}
+                                    showLabels={true}
+                                    labelsAboveChildren={true}
+                                    labelsStyle={{ fontSize: 14, color: "#ff0000" }}
+                                />
+                            </Paper>
                         </Grid>
                         <Grid item>
                             <Paper>
                                 <Typography>
-                                    Mana
-                                </Typography>
-                                <XYPlot
-                                    width={500}
-                                    height={500}
-
-                                    stackBy="y"
-                                    xDomain={[
-                                        0,
-                                        7
-                                    ]}
-                                    yDoamin={[
-                                        0,
-                                        1
-                                    ]}
-                                >
-                                    <XAxis />
-                                    <VerticalBarSeries
-                                        cluster="stack 1"
-                                        data={manaDataOne}
-                                        style={{}}
-                                    />
-                                    <VerticalBarSeries
-                                        cluster="stack 1"
-                                        data={manaDataTwo}
-                                        style={{}}
-                                    />
-                                </XYPlot>
+                                    Rarity
+                                        </Typography>
+                                <RadialChart
+                                    width={400}
+                                    height={400}
+                                    innerRadius={80}
+                                    radius={140}
+                                    colorType='literal'
+                                    data={rarityData}
+                                    showLabels={true}
+                                    labelsStyle={{ fontSize: 14, color: '#ff0000' }}
+                                />
                             </Paper>
                         </Grid>
+                    </Grid>
+
+                    <Grid item>
+                        <Paper>
+                            <Typography>
+                                Mana
+                                </Typography>
+                            <XYPlot
+                                width={500}
+                                height={500}
+
+                                stackBy="y"
+                                xDomain={[
+                                    0,
+                                    7
+                                ]}
+                                yDoamin={[
+                                    0,
+                                    1
+                                ]}
+                            >
+                                <XAxis />
+                                <VerticalBarSeries
+                                    cluster="stack 1"
+                                    data={manaDataOne}
+                                    style={{}}
+                                />
+                                <VerticalBarSeries
+                                    cluster="stack 1"
+                                    data={manaDataTwo}
+                                    style={{}}
+                                />
+                            </XYPlot>
+                        </Paper>
                     </Grid>
                 </DialogContent>
                 <DialogActions>
