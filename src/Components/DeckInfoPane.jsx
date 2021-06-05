@@ -1,12 +1,15 @@
-import { Button, Grid, Icon, Paper, TextField, Typography } from '@material-ui/core'
-import { ContactlessOutlined, FunctionsOutlined } from '@material-ui/icons';
-import { React } from 'react'
+import { Button, Grid, Icon, IconButton, Paper, TextField, Typography } from '@material-ui/core'
+import { ContactlessOutlined, FunctionsOutlined, BarChartOutlined } from '@material-ui/icons';
+import { React, useState } from 'react'
 import { FixedSizeList } from 'react-window';
 import { Card, DeckEncoder } from 'runeterra';
+import { StatisticDialog } from './StatisticDialog';
 
 const images = require.context('../../public/images/cards', true);
 const typeImgs = require.context('../../public/images/cardtype', true);
 export const DeckInfoPane = (props) => {
+
+    const [openStatisticDialog, setOpenStatisticDialog] = useState(false)
 
     const {
         myList,
@@ -63,6 +66,10 @@ export const DeckInfoPane = (props) => {
 
     }
 
+    const handleChartButton = () => {
+        setOpenStatisticDialog(true)
+    }
+
     const handleExportClick = () => {
         let cards = []
         for (const c in myDeck.cardCnt) {
@@ -112,48 +119,53 @@ export const DeckInfoPane = (props) => {
     const landmarkTypeImg = typeImgs('./landmark.svg').default
     const spellTypeImg = typeImgs('./spell.svg').default
     return (
-        <Grid container direction='column' spacing={2} justify='center'>
-            <Grid item>
-                {/* <form noValidate autoComplete="off">
+        <div>
+            <Grid container direction='column' spacing={2} justify='center'>
+                <Grid item>
+                    {/* <form noValidate autoComplete="off">
                     <TextField id="outlined-basic" label="Outlined" variant="outlined" />
                 </form> */}
-                <h3> My Deck </h3>
-            </Grid>
-            <Grid item>
-                <Grid container spacing={3} justify='center'>
-                    <Grid item>
-                        <img src={championTypeImg}></img>
-                        {`${championCnt}/6`}
-                    </Grid>
-                    <Grid item>
-                        <img src={spellTypeImg}></img>
-                        {`${spellCnt}`}
-                    </Grid>
-                    <Grid item>
-                        <img src={followerTypeImg}></img>
-                        {`${followerCnt}`}
-                    </Grid>
-                    <Grid item>
-                        <img src={landmarkTypeImg} height='25px' width='25px'></img>
-                        {`${landmarkCnt}`}
-                    </Grid>
-                    <Grid item>
-                        <FunctionsOutlined />
-                        {`${deckSize}/40`}
+                    <h3> My Deck </h3>
+                </Grid>
+                <Grid item>
+                    <Grid container spacing={3} justify='center'>
+                        <Grid item>
+                            <img src={championTypeImg}></img>
+                            {`${championCnt}/6`}
+                        </Grid>
+                        <Grid item>
+                            <img src={spellTypeImg}></img>
+                            {`${spellCnt}`}
+                        </Grid>
+                        <Grid item>
+                            <img src={followerTypeImg}></img>
+                            {`${followerCnt}`}
+                        </Grid>
+                        <Grid item>
+                            <img src={landmarkTypeImg} height='25px' width='25px'></img>
+                            {`${landmarkCnt}`}
+                        </Grid>
+                        <Grid item>
+                            <FunctionsOutlined />
+                            {`${deckSize}/40`}
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-            {/* <Grid item>
+                {/* <Grid item>
                 This is going to be the chart section
                 Temporary place holder
             </Grid> */}
-            <Grid item>
-                <Button variant='outlined' color='primary' onClick={() => handleExportClick()}>
-                    Export
+                <Grid item>
+                    <Button variant='outlined' color='primary' onClick={() => handleExportClick()}>
+                        Export
                 </Button>
-            </Grid>
-            <Grid item>
-                {/* <Grid container direction='column' spacing={1} justify='center'>
+                    <IconButton onClick={() => handleChartButton()}>
+                        <BarChartOutlined />
+                    </IconButton>
+
+                </Grid>
+                <Grid item>
+                    {/* <Grid container direction='column' spacing={1} justify='center'>
                     {
                         displayCards.map((c, idx) => {
                             let imgsrc = images(`./${c.cardCode}-full.png`);
@@ -171,18 +183,23 @@ export const DeckInfoPane = (props) => {
                         })
                     }
                 </Grid> */}
-                <FixedSizeList
-                    height={window.innerHeight - 280}
-                    itemCount={displayCards.length}
-                    itemSize={95}
-                    width={345}
-                >
-                    {Row}
-                </FixedSizeList>
+                    <FixedSizeList
+                        height={window.innerHeight - 280}
+                        itemCount={displayCards.length}
+                        itemSize={95}
+                        width={345}
+                    >
+                        {Row}
+                    </FixedSizeList>
+                </Grid>
             </Grid>
-
-
-        </Grid>
-
+            <StatisticDialog
+                myDeck={myDeck}
+                openStatisticDialog={openStatisticDialog}
+                setOpenStatisticDialog={setOpenStatisticDialog}
+                nameToCard={nameToCard}
+            >
+            </StatisticDialog>
+        </div>
     )
 }
