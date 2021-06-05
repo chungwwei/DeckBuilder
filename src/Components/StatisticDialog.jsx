@@ -139,18 +139,10 @@ export const StatisticDialog = (props) => {
     if (epicCnt !== 0) rarityData.push({ angle: epicCnt, color: '#BE00FE', name: "Epic", label: 'Epic' })
     if (championCnt !== 0) rarityData.push({ angle: championCnt, color: '#FFD700', name: "Champion", label: 'Champion' })
 
-    if (spellCnt !== 0) typeData.push({ angle: commonCnt, color: '#d9a5b3', name: "Spell", label: 'Spell' })
+    if (spellCnt !== 0) typeData.push({ angle: spellCnt, color: '#d9a5b3', name: "Spell", label: 'Spell' })
     if (landmarkCnt !== 0) typeData.push({ angle: landmarkCnt, color: '#1868ae', name: "Landmark", label: 'Landmark' })
     if (followerCnt !== 0) typeData.push({ angle: followerCnt, color: '#c6d7eb', name: "Follower", label: 'Follower' })
     if (championCnt !== 0) typeData.push({ angle: championCnt, color: '#FFD700', name: "Champion", label: 'Champion' })
-    console.log(`spellcnt: ${spellCnt}`)
-    console.log(`unitCnt: ${followerCnt}`)
-    console.log(`landmarkCnt: ${landmarkCnt}`)
-    console.log(`championCnt: ${championCnt}`)
-    console.log(`rareCnt: ${rareCnt}`)
-    console.log(`epicCnt: ${epicCnt}`)
-    console.log(`commonCnt: ${commonCnt}`)
-
 
     return (
         <div>

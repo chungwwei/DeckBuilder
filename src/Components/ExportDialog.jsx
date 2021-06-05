@@ -40,9 +40,9 @@ export const ExportDialog = (props) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <IconButton onClick={()=>{handleCopyClick()}}>
+                    {/* <IconButton onClick={()=>{handleCopyClick()}}>
                         <FileCopyOutlined></FileCopyOutlined>
-                    </IconButton>
+                    </IconButton> */}
                     <Button onClick={handleClose} color="primary" autofocus>
                         Close
                     </Button>
