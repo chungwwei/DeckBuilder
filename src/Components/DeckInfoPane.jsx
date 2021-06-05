@@ -7,6 +7,7 @@ import { StatisticDialog } from './StatisticDialog';
 
 const images = require.context('../../public/images/cards', true);
 const typeImgs = require.context('../../public/images/cardtype', true);
+const manaImgs = require.context('../../public/images/manas', true)
 export const DeckInfoPane = (props) => {
 
     const [openStatisticDialog, setOpenStatisticDialog] = useState(false)
@@ -104,11 +105,13 @@ export const DeckInfoPane = (props) => {
 
         let c = displayCards[index]
         let imgsrc = images(`./${c.cardCode}-full.png`);
+        let manasrc = manaImgs(`./mana${c.cost}.png`)
         return (
             <div style={style}>
-                <Paper onClick={() => { handleCardClick(c.name) }} style={{ background: getStripColor(c.region), textAlign: 'right' }}>
-                    {`${c.name} X${c.cnt}`}
-                    <img style={{ width: '40%', height: '80px', objectFit: 'cover' }} src={imgsrc.default} />
+                <Paper onClick={() => { handleCardClick(c.name) }} style={{ width: '350px', height: '80px', background: getStripColor(c.region), position: 'relative' }}>
+                    <div style={{maxWidth: '200px', wordWrap: true, position: 'absolute', top: 10, left: 10, background: getStripColor(c.region)}}> {`${c.name} X${c.cnt}`} </div>
+                    <img style={{ width: '40%', height: '80px', objectFit: 'cover', position: 'absolute', right: 0 }} src={imgsrc.default} />
+                    <img style={{ width: '40px', height: '40px', position: 'absolute', bottom: 5, left: 10}} src={manasrc.default}></img>
                 </Paper>
             </div>
         )
