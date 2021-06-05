@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/DeckBuilder/static/css/main.d8a6efbe.chunk.css",
-    "main.js": "/DeckBuilder/static/js/main.dc2104e4.chunk.js",
-    "main.js.map": "/DeckBuilder/static/js/main.dc2104e4.chunk.js.map",
-    "runtime-main.js": "/DeckBuilder/static/js/runtime-main.4b03c6be.js",
-    "runtime-main.js.map": "/DeckBuilder/static/js/runtime-main.4b03c6be.js.map",
-    "static/js/2.270f2a74.chunk.js": "/DeckBuilder/static/js/2.270f2a74.chunk.js",
-    "static/js/2.270f2a74.chunk.js.map": "/DeckBuilder/static/js/2.270f2a74.chunk.js.map",
-    "static/js/3.6a3a4b0e.chunk.js": "/DeckBuilder/static/js/3.6a3a4b0e.chunk.js",
-    "static/js/3.6a3a4b0e.chunk.js.map": "/DeckBuilder/static/js/3.6a3a4b0e.chunk.js.map",
+    "main.js": "/DeckBuilder/static/js/main.20743712.chunk.js",
+    "main.js.map": "/DeckBuilder/static/js/main.20743712.chunk.js.map",
+    "runtime-main.js": "/DeckBuilder/static/js/runtime-main.896c3b34.js",
+    "runtime-main.js.map": "/DeckBuilder/static/js/runtime-main.896c3b34.js.map",
+    "static/js/2.cef92377.chunk.js": "/DeckBuilder/static/js/2.cef92377.chunk.js",
+    "static/js/2.cef92377.chunk.js.map": "/DeckBuilder/static/js/2.cef92377.chunk.js.map",
+    "static/js/3.c27fee41.chunk.js": "/DeckBuilder/static/js/3.c27fee41.chunk.js",
+    "static/js/3.c27fee41.chunk.js.map": "/DeckBuilder/static/js/3.c27fee41.chunk.js.map",
     "index.html": "/DeckBuilder/index.html",
     "static/css/main.d8a6efbe.chunk.css.map": "/DeckBuilder/static/css/main.d8a6efbe.chunk.css.map",
-    "static/js/2.270f2a74.chunk.js.LICENSE.txt": "/DeckBuilder/static/js/2.270f2a74.chunk.js.LICENSE.txt",
+    "static/js/2.cef92377.chunk.js.LICENSE.txt": "/DeckBuilder/static/js/2.cef92377.chunk.js.LICENSE.txt",
     "static/media/01DE001-full.png": "/DeckBuilder/static/media/01DE001-full.ed21aa1e.png",
     "static/media/01DE001.png": "/DeckBuilder/static/media/01DE001.92c01490.png",
     "static/media/01DE002-full.png": "/DeckBuilder/static/media/01DE002-full.e4a0b245.png",
@@ -2377,9 +2377,9 @@
     "static/media/spell.svg": "/DeckBuilder/static/media/spell.56bb715c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.4b03c6be.js",
-    "static/js/2.270f2a74.chunk.js",
+    "static/js/runtime-main.896c3b34.js",
+    "static/js/2.cef92377.chunk.js",
     "static/css/main.d8a6efbe.chunk.css",
-    "static/js/main.dc2104e4.chunk.js"
+    "static/js/main.20743712.chunk.js"
   ]
 }
